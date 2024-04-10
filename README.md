@@ -1,6 +1,6 @@
-# gpt-code-reviewer
+# gpt-commit-summarizer
 
-`gpt-code-reviewer` is a Python application that leverages OpenAI's GPT-3.5 language model to assist with code reviews. It provides an interface for users to interact with the GPT model to review code changes from GitHub pull requests.
+`gpt-commit-summarizer` is a Python application that leverages OpenAI's GPT-4-Turbo language model to assist with code reviews. It provides an interface for users to interact with the GPT model to review code changes from GitHub pull requests.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ Before you begin, ensure you have the following:
 1. **Clone the repository:**
 
 sh
-git clone https://github.com/spshulem/gpt-code-reviewer.git
+git clone https://github.com/spshulem/gpt-commit-summarizer.git
 cd gpt-code-reviewer
 
 
