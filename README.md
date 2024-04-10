@@ -1,42 +1,69 @@
 # gpt-code-reviewer
 
-gpt-code-reviewer is a Python script that assists you with code reviews using OpenAI's GPT-3.5 language model. It interacts with users through a command line interface and GitHub API to retrieve code for review.
+`gpt-code-reviewer` is a Python application that leverages OpenAI's GPT-3.5 language model to assist with code reviews. It provides an interface for users to interact with the GPT model to review code changes from GitHub pull requests.
 
-## Requirements
+## Prerequisites
 
-The script requires access to a GitHub account and an OpenAI API key.
+Before you begin, ensure you have the following:
+- Python 3.6 or higher
+- `pip` for installing dependencies
+- A GitHub account with access to the repositories you want to review
+- An OpenAI API key
 
-Set environment variables:
+## Setup
 
-`GITHUB_TOKEN`  - optional for authentication
+1. **Clone the repository:**
 
-`OPENAI_API_KEY` - required to access gpt
+sh
+git clone https://github.com/spshulem/gpt-code-reviewer.git
+cd gpt-code-reviewer
+
+
+2. **Install dependencies:**
+
+sh
+pip install -r requirements.txt
+
+
+3. **Configure environment variables:**
+   Set the `GITHUB_TOKEN` and `OPENAI_API_KEY` environment variables. Replace `<your_github_token>` and `<your_openai_api_key>` with your actual tokens.
+
+sh
+export GITHUB_TOKEN="<your_github_token>"
+export OPENAI_API_KEY="<your_openai_api_key>"
+
+
+4. **Set up the configuration file:**
+   Copy the example configuration file and edit it to include the repositories you want to work with.
+
+sh
+cp config.yaml.example config.yaml
+# Edit config.yaml to include your repositories and user information
+
+sh
+python repo.py
+
+
+Follow the prompts to select a repository and enter the range of commits you want to review. The script will interact with the GPT model to provide summaries and feedback for the specified commits.
+
+## Features
+
+- Fetch and display a list of recent commits from a GitHub repository.
+- Summarize code changes for individual or ranges of commits.
+- Save transcripts of the review session for future reference.
+
+## API Hosting
+
+You can also host `gpt-code-reviewer` as an API using the following command:
+
 
 ## Usage
 
-Clone the repository and navigate to its directory in your terminal. Then, run the following command:
-
-`cp config.yaml.example config.yaml`
-
-Edit `config.yaml` to suit your needs.
-
-Run this command to start the application and chat with GPT about your pull requests.
-
-`python chat.py`
-
-The script will prompt you to select a repository and pull request to review. You will then be prompted to enter 'r' to review the code, 'q' to quit, 'h' for help, and 'n' to review a different pull request.
-
-The language model will provide suggestions and feedback based on your input, and you can continue to review the code until you are finished.
-
-Transcripts of the conversation will be saved as a markdown file for reference.
+Run the script using the following command:
 
 ## API
 
 You can also host gpt-code-reviewer as an api using `python api.py`, see `api.py` for the list of routes.
-
-## SudoLang
-
-You can run a [SudoLang](https://github.com/paralleldrive/sudolang-llm-support) version of this at https://github.com/rjmacarthy/pseudo
 
 ## License
 

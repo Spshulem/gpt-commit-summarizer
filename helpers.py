@@ -10,7 +10,7 @@ config = yaml.safe_load(open("config.yaml", "r", encoding="utf-8"))
 
 repositories = config["repositories"]
 MODEL_ENGINE = config["model_engine"]
-MAX_LENGTH = 2500
+MAX_LENGTH = 4000
 user = config["user"]
 
 console = Console()
@@ -76,6 +76,16 @@ def add_message(messages, message: str, role, pr: str, repository):
     with open(f"./transcripts/{pr}-{repository}.md", "a") as f:
         f.write(role + "\n" + message + "\n")
 
+def fetch_commits(repository: str, num_commits: int) -> list:
+    url = f"{github_repository_base_url}/{repository}/commits"
+    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
+    params = {"per_page": num_commits}
+    response = requests.get(url, headers=headers, params=params, timeout=10)
+    if response.status_code == 200:
+        return response.json()  # Ensure this returns a list of dictionaries
+    else:
+        console.print(f"Failed to fetch commits: {response.status_code}")
+        return []
 
 def fetch_repository_data(
     repository: str, pull_request: str, accept="application/vnd.github.v3.diff"

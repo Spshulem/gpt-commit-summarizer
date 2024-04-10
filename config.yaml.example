@@ -1,9 +1,5 @@
 repositories: [
-  "twinny",
-  "gpt-code-reviewer",
-  "quintus",
-  "wiffy",
-  "string-tokeniser"
+  "ai",
 ]
-user: "rjmacarthy"
-model_engine: "gpt-4"
+user: "vercel"
+model_engine: "gpt-4-turbo"

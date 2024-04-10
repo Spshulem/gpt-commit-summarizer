@@ -1,4 +1,6 @@
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 import os
 import yaml
 
@@ -9,7 +11,6 @@ MODEL_ENGINE = config["model_engine"]
 
 
 def get_completion(messages):
-    return openai.ChatCompletion.create(
-        model=MODEL_ENGINE,
-        messages=messages,
-    )
+    response = client.chat.completions.create(model=MODEL_ENGINE,
+    messages=messages)
+    return response
