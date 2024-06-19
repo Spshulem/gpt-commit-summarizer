@@ -12,10 +12,10 @@ from completion import get_completion
 
 config = yaml.safe_load(open("config.yaml", "r", encoding="utf-8"))
 console = Console()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def chat():
+    
     messages = []
 
     repository, pull_request = get_repo_and_pr()
@@ -25,14 +25,17 @@ def chat():
     if not pull_request:
         get_repo_and_pr()
 
-    add_message(messages, get_system_prompt(), "system", pull_request, repository)
+    add_message(messages, get_system_prompt(),
+                "system", pull_request, repository)
 
     data = fetch_repository_data(
         repository, pull_request, "application/vnd.github.v3+json"
     )
 
-    add_message(messages, data.json()["body"], "user", pull_request, repository)
-    add_message(messages, data.json()["title"], "user", pull_request, repository)
+    add_message(messages, data.json()["body"],
+                "user", pull_request, repository)
+    add_message(messages, data.json()["title"],
+                "user", pull_request, repository)
 
     while True:
         user_input = input("👨: ")
@@ -53,9 +56,11 @@ def chat():
             repository, pull_request = get_repo_and_pr()
             data_type = "application/vnd.github.v3+json"
             data = fetch_repository_data(repository, pull_request, data_type)
-            add_message(messages, data.json()["body"], "user", pull_request, repository)
+            add_message(messages, data.json()[
+                        "body"], "user", pull_request, repository)
             add_message(
-                messages, data.json()["title"], "user", pull_request, repository
+                messages, data.json()[
+                    "title"], "user", pull_request, repository
             )
             print_options(repository, pull_request)
             continue
